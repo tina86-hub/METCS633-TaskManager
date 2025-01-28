@@ -9,9 +9,7 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_id")
     private Integer id;
-    @Column(name = "role")
     private String role;
     @ManyToMany(mappedBy = "roles")
     private List<User> users;

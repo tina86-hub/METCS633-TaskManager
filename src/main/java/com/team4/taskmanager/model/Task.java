@@ -14,7 +14,6 @@ import java.util.Objects;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "task_id")
     private Long id;
     @NotEmpty(message = "{task.name.not.empty}")
     private String name;
@@ -28,7 +27,7 @@ public class Task {
     private boolean isCompleted;
     private String creatorName;
     @ManyToOne
-    @JoinColumn(name = "OWNER_ID")
+    @JoinColumn(name = "owner_id")
     private User owner;
 
     public long daysLeftUntilDeadline(LocalDate date) {

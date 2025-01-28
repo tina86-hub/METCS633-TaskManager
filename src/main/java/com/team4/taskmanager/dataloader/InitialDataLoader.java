@@ -56,8 +56,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         User admin = new User(
                 defaultAdminMail,
                 defaultAdminName,
-                defaultAdminPassword,
-                defaultAdminImage);
+                defaultAdminPassword);
         userService.createUser(admin);
         userService.changeRoleToAdmin(admin);
 
@@ -65,8 +64,7 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         User manager = new User(
                 "manager@mail.com",
                 "Manager",
-                "112233",
-                "images/admin.png");
+                "112233");
         userService.createUser(manager);
         userService.changeRoleToAdmin(manager);
 
@@ -74,36 +72,31 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
         userService.createUser(new User(
                 "mark@mail.com",
                 "Mark",
-                "112233",
-                "images/mark.jpg"));
+                "112233"));
 
         //4
         userService.createUser(new User(
                 "ann@mail.com",
                 "Ann",
-                "112233",
-                "images/ann.jpg"));
+                "112233"));
 
         //5
         userService.createUser(new User(
                 "ralf@mail.com",
                 "Ralf",
-                "112233",
-                "images/ralf.jpg"));
+                "112233"));
 
         //6
         userService.createUser(new User(
                 "kate@mail.com",
                 "Kate",
-                "112233",
-                "images/kate.jpg"));
+                "112233"));
 
         //7
         userService.createUser(new User(
                 "tom@mail.com",
                 "Tom",
-                "112233",
-                "images/tom.jpg"));
+                "112233"));
 
         userService.findAll().stream()
                 .map(u -> "saved user: " + u.getName())

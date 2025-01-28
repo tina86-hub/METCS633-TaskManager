@@ -8,7 +8,7 @@ com\team4\taskmanager\model\Task.class
 com\team4\taskmanager\repository\UserRepository.class
 com\team4\taskmanager\controller\RegisterController.class
 com\team4\taskmanager\controller\LoginController.class
-com\team4\taskmanager\controller\AssigmentController.class
+com\team4\taskmanager\controller\TaskManagerController.class
 com\team4\taskmanager\repository\TaskRepository.class
 com\team4\taskmanager\configuration\SecurityConfiguration.class
 com\team4\taskmanager\service\RoleService.class
