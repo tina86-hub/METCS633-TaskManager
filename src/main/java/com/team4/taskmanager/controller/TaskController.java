@@ -1,6 +1,7 @@
 package com.team4.taskmanager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import com.team4.taskmanager.service.UserService;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class TaskController {
@@ -110,5 +112,19 @@ public class TaskController {
         taskService.setTaskNotCompleted(id);
         return "redirect:/tasks";
     }
+    
+    @GetMapping("/rest/tasks")
+    public ResponseEntity<List<Task>> getAllTasks(Principal principal, SecurityContextHolderAwareRequestWrapper request) {
+        boolean isAdminSigned = request.isUserInRole("ROLE_ADMIN");
+        return ResponseEntity.ok( taskService.findAll()); 
+    }
+    
+    @GetMapping("/rest/tasks/in-progress")
+    public String getAllTasksInProgress(Model model, Principal principal, SecurityContextHolderAwareRequestWrapper request) {
+        prepareTasksListModel(model, principal, request);
+        model.addAttribute("onlyInProgress", true);
+        return "views/tasks";
+    }
+
 
 }

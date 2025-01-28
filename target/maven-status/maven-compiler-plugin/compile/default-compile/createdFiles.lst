@@ -1,13 +1,11 @@
 com\team4\taskmanager\service\TaskService.class
 com\team4\taskmanager\model\Role.class
 com\team4\taskmanager\service\UserService.class
-com\team4\taskmanager\controller\IndexController.class
 com\team4\taskmanager\TaskManagerApplication.class
 com\team4\taskmanager\model\User.class
 com\team4\taskmanager\model\Task.class
 com\team4\taskmanager\repository\UserRepository.class
 com\team4\taskmanager\controller\RegisterController.class
-com\team4\taskmanager\controller\LoginController.class
 com\team4\taskmanager\controller\TaskManagerController.class
 com\team4\taskmanager\repository\TaskRepository.class
 com\team4\taskmanager\configuration\SecurityConfiguration.class

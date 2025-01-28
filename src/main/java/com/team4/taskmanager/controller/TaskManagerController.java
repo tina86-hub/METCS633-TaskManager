@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team4.taskmanager.model.Task;
 import com.team4.taskmanager.model.User;
@@ -18,6 +19,21 @@ public class TaskManagerController {
     private UserService userService;
 	@Autowired
     private TaskService taskService;
+	
+	@GetMapping("/login")
+    String showLoginForm() {
+        return "forms/login";
+    }
+	
+	  @RequestMapping("/")
+	    String showIndex() {
+	        return "index";
+	    }
+	    
+	    @RequestMapping("/about")
+	    String showAboutPage(){
+	        return "views/about";
+	    }
 
     @GetMapping("/task/assignment")
     public String showAssigmentForm(Model model) {
