@@ -42,14 +42,14 @@ $(document).ready(function () {
     });
 });
 $(document).ready(function () {
-    $("#demo-ann-btn").click(function () {
-        $("#email").val("ann@mail.com");
-        $("#password").val("112233");
+    $("#demo-tina-btn").click(function () {
+        $("#email").val("tina@mail.com");
+        $("#password").val("tina");
     });
 });
 $(document).ready(function () {
     $("#demo-mark-btn").click(function () {
-        $("#email").val("mark@mail.com");
-        $("#password").val("112233");
+        $("#email").val("tom@mail.com");
+        $("#password").val("tom");
     });
 });

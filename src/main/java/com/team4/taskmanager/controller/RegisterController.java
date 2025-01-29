@@ -41,17 +41,5 @@ public class RegisterController {
         return "views/success";
     }
     
-    @PostMapping("/rest/register")
-    public String registerUser(@RequestBody User user) {
-        
-    	 if (userService.isUserEmailPresent(user.getEmail())) {
-    		  return "User Exists";
-    		 
-    	 }else {
-    		  userService.createUser(user);
-    		  return "User registered successfully";
-    	 }
-       
-    }
 
 }

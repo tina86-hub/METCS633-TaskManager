@@ -46,11 +46,8 @@ public class UserController {
         List<User> users = new ArrayList<>();
         if(isAdminSigned) {
         	users = userService.findAll();
-        	
         }
         return ResponseEntity.ok(users);
-        
-        
     }
 
 }

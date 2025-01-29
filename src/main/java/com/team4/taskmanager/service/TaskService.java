@@ -26,6 +26,9 @@ public class TaskService{
 		task.setDate(updatedTask.getDate());
 		taskRepository.save(task);
 	}
+	
+	
+	
 
 	public void deleteTask(Long id) {
 		taskRepository.deleteById(id);
@@ -67,7 +70,9 @@ public class TaskService{
 		return taskRepository.findById(id).orElse(null);
 	}
 
-	
+	public Task getTaskByName(String name) {
+		return taskRepository.findByName(name).orElse(null);
+	}
 	public void assignTaskToUser(Task task, User user) {
 		task.setOwner(user);
 		taskRepository.save(task);

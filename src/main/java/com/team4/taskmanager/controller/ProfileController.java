@@ -60,8 +60,8 @@ public class ProfileController {
     @PutMapping("/rest/tasks/{taskId}/unmark-done")
     public ResponseEntity<Void> restTaskNotCompleted( @PathVariable Long taskId) {
         taskService.setTaskNotCompleted(taskId);
-        return ResponseEntity.noContent().build();  // Return 204 No Content, indicating success without content in response
-    }
+        return ResponseEntity.noContent().build(); 
+        }
     
     @PutMapping("/rest/tasks/{taskId}/mark-done")
     public ResponseEntity<Void>  restTaskCompleted( @PathVariable Long taskId) {

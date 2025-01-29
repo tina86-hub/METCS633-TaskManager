@@ -15,4 +15,5 @@ com\team4\taskmanager\controller\ProfileController.class
 com\team4\taskmanager\controller\TaskController.class
 com\team4\taskmanager\configuration\WebMvcConfig.class
 com\team4\taskmanager\controller\UserController.class
+com\team4\taskmanager\controller\RestController.class
 com\team4\taskmanager\dataloader\InitialDataLoader.class

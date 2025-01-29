@@ -55,14 +55,14 @@ public class TaskManagerController {
         Task selectedTask = taskService.getTaskById(taskId);
         User selectedUser = userService.getUserById(userId);
         taskService.assignTaskToUser(selectedTask, selectedUser);
-        return "redirect:/assignment/" + userId;
+        return "redirect:/task/assignment/" + userId;
     }
 
     @GetMapping("/task/assignment/unassign/{userId}/{taskId}")
     public String unassignTaskFromUser(@PathVariable Long userId, @PathVariable Long taskId) {
         Task selectedTask = taskService.getTaskById(taskId);
         taskService.unassignTask(selectedTask);
-        return "redirect:/assignment/" + userId;
+        return "redirect:/task/assignment/" + userId;
     }
 
 }
