@@ -3,6 +3,10 @@ html {
     min-height: 100%;
 }
 
+.bg-secondary {
+    background-color: #198759 !important;
+}
+
 main.container {
     padding: 80px 5px 60px 5px;
 }

@@ -2,6 +2,8 @@ package com.team4.taskmanager.model;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -24,6 +26,7 @@ public class User {
     private String name;
     @NotEmpty(message = "{user.password.not.empty}")
     @Length(min = 5, message = "{user.password.length}")
+    @JsonIgnore
     private String password;
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST)

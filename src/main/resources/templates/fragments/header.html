@@ -3,9 +3,10 @@
       xmlns="http://www.thymeleaf.org">
 
 <header th:fragment="header(activeTab)">
-
-   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand mr-4" href="#">Task Manager</a>
+ 
+  <div class= "container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Task Manager</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
                 aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,28 +14,27 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-
                 <!--Home-->
                 <li th:class="${activeTab == 'home'}? 'active nav-item mr-4' : 'nav-item mr-4'">
                     <a class="nav-link" href="/">Home</a>
                 </li>
 
                 <!--Tasks list-->
-                <li th:class="${activeTab == 'tasks-list'}? 'active nav-item mr-4' : 'nav-item mr-4'"
+                <li th:class="${activeTab == 'tasks'}? 'active nav-item mr-4' : 'nav-item mr-4'"
                     sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/tasks">Tasks List</a>
+                    <a class="nav-link" href="/tasks">Tasks</a>
                 </li>
 
                 <!--Assign tasks-->
-                <li th:class="${activeTab == 'assign-tasks'}? 'active nav-item mr-4' : 'nav-item mr-4'"
+                <li th:class="${activeTab == 'assign'}? 'active nav-item mr-4' : 'nav-item mr-4'"
                     sec:authorize="hasRole('ROLE_ADMIN')">
-                    <a class="nav-link" href="/task/assignment">Assign Tasks</a>
+                    <a class="nav-link" href="/task/assignment">Assign</a>
                 </li>
 
                 <!--Create New Task-->
-                <li th:class="${activeTab == 'create-new-task'}? 'active nav-item mr-4' : 'nav-item mr-4'"
+                <li th:class="${activeTab == 'create-task'}? 'active nav-item mr-4' : 'nav-item mr-4'"
                     sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/task/create">Create New Task</a>
+                    <a class="nav-link" href="/task/create">Create Task</a>
                 </li>
 
                 <!--Users List-->
@@ -46,13 +46,10 @@
                 <!--Profile-->
                 <li th:class="${activeTab == 'profile'}? 'active nav-item mr-4' : 'nav-item mr-4'"
                     sec:authorize="isAuthenticated()">
-                    <a class="nav-link" href="/profile">Your Profile</a>
+                    <a class="nav-link" href="/profile">Profile</a>
                 </li>
 
-                <!--About-->
-                <li th:class="${activeTab == 'about'}? 'active nav-item mr-4' : 'nav-item mr-4'">
-                    <a class="nav-link" href="/about">About</a>
-                </li>
+           
             </ul>
 
             <ul class="navbar-nav">
@@ -78,6 +75,7 @@
 
         </div>
     </nav>
-
+  </div>
+   
 </header>
 </html>

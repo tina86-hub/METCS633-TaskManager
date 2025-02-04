@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Tasks List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+</header>
+
+<main class="container">
+    <div class="card bg-light text-dark">
+        <div class="card-body">
+            <h5 class="card-title m-3">Tasks List</h5>
+            <span th:unless="${onlyInProgress}">
+                <a href="/tasks/in-progress" class="btn btn-outline-info btn-sm float-right">Hide Completed Tasks</a>
+            </span>
+            <span th:if="${onlyInProgress}">
+                <a href="/tasks" class="btn btn-outline-info btn-sm float-right">Show Completed Tasks</a>
+            </span>
+        </div>
+
+        <div class="card card-body">
+            <table id="sortableTable" class="table-striped table-hover text-center" style="table-layout: fixed; width: 100%;">
+                <thead class="table-primary">
+                    <tr>
+                        <th style="width:40%" class="text-left">Name</th>
+                        <th style="width:12%">Date</th>
+                        <th style="width:8%" class="d-none d-lg-table-cell">Days left</th>
+                        <th style="width:8%">Completed</th>
+                        <th style="width:8%" class="d-none d-lg-table-cell">Assignee</th>
+                        <th style="width:8%" class="d-none d-lg-table-cell">Reporter</th>
+                        <th style="width:16%" class="d-none d-lg-table-cell">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="t : ${tasks}" th:if="${!onlyInProgress or !t.completed}" th:with="isThisOneSigned=${t.owner != null ? t.owner.equals(signedUser) : false}">
+                        <!-- Task Name -->
+                        <td class="text-left">
+                            <span th:if="${isAdminSigned or isThisOneSigned}">
+                                <input type="text" class="form-control" th:value="${t.name}" th:id="'name' + ${t.id}" th:data-id="${t.id}" />
+                            </span>
+                            <span th:unless="${isAdminSigned or isThisOneSigned}">
+                                <span th:text="${t.name}"></span>
+                            </span>
+                        </td>
+
+                        <!-- Task Date -->
+                        <td th:text="${#temporals.format(t.date, 'dd-MM-yyyy')}"></td>
+
+                        <!-- Completed Status -->
+                        <td th:data-order="${t.completed} ? 1 : 0">
+                            <a th:if="${isAdminSigned or isThisOneSigned}" th:href="${t.completed} ? ${'/task/unmark-done/' + t.id} : ${'/task/mark-done/' + t.id}"
+                               class="nav-link my-link">
+                                <i th:class="${t.completed} ? 'far fa-check-square my-check' : 'far fa-square my-check'"></i>
+                            </a>
+                        </td>
+
+                        <!-- Task Owner -->
+                        <td th:if="${t.owner != null}" class="d-none d-lg-table-cell">
+                            <div th:text="${t.owner.getName()}"></div>
+                        </td>
+
+                        <td class="text-center" th:unless="${t.owner != null}">-</td>
+
+                        <!-- Task Creator -->
+                        <td th:text="${t.creatorName}" class="d-none d-lg-table-cell"></td>
+
+                        <!-- Edit & Delete buttons -->
+                        <td th:if="${isAdminSigned or isThisOneSigned}" class="d-none d-lg-table-cell">
+                            <button class="btn btn-outline-success btn-sm" th:data-id="${t.id}" onclick="saveChanges(${t.id})">Save</button>
+                            <button class="btn btn-outline-danger btn-sm" th:data-id="${t.id}" onclick="deleteTask(${t.id})">Delete</button>
+                        </td>
+
+                        <td th:unless="${isAdminSigned or isThisOneSigned}" class="d-none d-lg-table-cell">
+                            <button class="btn btn-outline-secondary btn-sm disabled">Edit</button>
+                            <button class="btn btn-outline-secondary btn-sm disabled">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function saveChanges(taskId) {
+        var taskName = $('#name' + taskId).val();
+        $.ajax({
+            url: '/task/update/' + taskId,
+            type: 'POST',
+            data: {
+                name: taskName
+            },
+            success: function(response) {
+                // Optionally, you can update the task on the page without a full reload
+                alert('Task updated successfully!');
+            },
+            error: function() {
+                alert('Error updating task.');
+            }
+        });
+    }
+
+    function deleteTask(taskId) {
+        if (confirm('Are you sure you want to delete this task?')) {
+            window.location.href = '/task/delete/' + taskId;
+        }
+    }
+</script>
+
+</body>
+</html>

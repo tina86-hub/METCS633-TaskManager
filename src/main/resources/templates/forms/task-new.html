@@ -3,8 +3,49 @@
       xmlns:th="http://www.thymeleaf.org"
       lang="en">
 <head>
-    <!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
     <title>Create New Task</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional: FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        .form-control-label {
+            font-weight: bold;
+        }
+
+        .my-highest-header {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        .btn-primary {
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group .form-control {
+            border-radius: .375rem;
+        }
+
+        .text-danger {
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,70 +54,64 @@
     <!--/*/ <th:block th:include="fragments/header :: header('create-new-task')"></th:block> /*/-->
 </header>
 
-<main class="container">
-    <div class="card mb-3">
+<main class="container mt-5">
+    <div class="card shadow-lg mb-5">
+        <h1 class="my-highest-header card-header bg-success text-white">Create New Task</h1>
 
-        <h1 class="my-highest-header card-header">Create new Task</h1>
-
-        <div class="card card-body">
+        <div class="card-body">
             <form th:action="@{/task/create}" th:object="${task}" method="post">
                 <input type="hidden" th:field="*{creatorName}"/>
                 <input type="hidden" th:field="*{owner}"/>
 
-                <!--name-->
+                <!-- Task Name -->
                 <div class="form-group">
-                    <label for="name" class="form-control-label">Task name</label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <i class="fas fa-pen"></i>
-                            </span>
-                        </div>
+                    <label for="name" class="form-control-label">Task Name</label>
+                    <div class="input-group">
                         <input type="text" class="form-control"
-                               th:field="*{name}" id="name"/>
+                               th:field="*{name}" id="name" placeholder="Enter task name" required/>
                     </div>
                     <div class="text text-danger"
                          th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                 </div>
 
-                <!--description-->
+                <!-- Task Description -->
                 <div class="form-group">
-                    <label for="description" class="form-control-label">Task description</label>
-                    <textarea class="form-control"
-                              th:field="*{description}" id="description">  </textarea>
+                    <label for="description" class="form-control-label">Task Description</label>
+                    <textarea class="form-control" th:field="*{description}" id="description" rows="4" placeholder="Enter task description" required></textarea>
                     <div class="text text-danger"
                          th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
                 </div>
 
-                <!--date-->
+                <!-- Task Date -->
                 <div class="form-group">
-                    <label for="date" class="form-control-label">Date</label>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <i class="far fa-calendar-alt"></i>
-                            </span>
-                        </div>
+                    <label for="date" class="form-control-label">Due Date</label>
+                    <div class="input-group">
                         <input type="date" class="form-control"
                                th:attr="value=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')},
-                                    min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
-                               th:field="*{date}" id="date"/>
+                                        min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
+                               th:field="*{date}" id="date" required/>
                     </div>
-
                     <div class="text text-danger"
                          th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
                 </div>
 
-                <input type="submit" value="Submit" class="btn btn-primary"/>
+                <!-- Submit Button -->
+                <div class="form-group">
+                    <input type="submit" value="Create Task" class="btn btn-success"/>
+                </div>
             </form>
         </div>
     </div>
 </main>
 
-
 <footer class="footer">
-    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    <p>Task Manager</p>
 </footer>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>

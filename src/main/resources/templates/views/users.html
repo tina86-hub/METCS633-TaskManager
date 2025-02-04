@@ -14,17 +14,17 @@
 </header>
 
 <main class="container">
-    <div class="card mb-3">
-
-        <h1 class="my-highest-header card-header">Users List</h1>
+    <div class="card mb-3 bg-light text-dark">
 
         <div class="card card-body">
-            <table class="table table-hover text-left">
+            <h5 class="card-title m-3" >Team Members</h5>
+        
+            <table class="table table-striped table-hover text-left">
 
                 <thead class="table-info">
                 <tr>
                     <th>Name</th>
-                    <th class="d-none d-lg-table-cell">Email</th>
+                    <!-- <th class="d-none d-lg-table-cell">Email</th>-->
                     <th>Tasks in progress</th>
                     <th class="d-none d-md-table-cell">Tasks completed</th>
                     <th th:if="${isAdminSigned}">Action</th>
@@ -34,14 +34,11 @@
                 <tbody>
                 <tr th:each="user:${users}">
 
-                    <!--Photo & name-->
                     <td>
-                        
                         <div th:text="${user.name}" class=" d-inline ml-1"></div>
                     </td>
 
-                    <!--Email-->
-                    <td th:text="${user.email}" class="d-none d-lg-table-cell"></td>
+                   <!--  <td th:text="${user.email}" class=" hide d-none d-lg-table-cell"></td>-->
 
                     <!--Tasks in  progress-->
                     <td th:if="${user.getTasksInProgress().size() gt 0}">
@@ -86,7 +83,6 @@
                                 </div>
                                 <div class="modal-body">
                                     <p th:text="${'Are you sure you want to delete user: &nbsp&nbsp'+user.name+'?'}"></p>
-                                    <small>After this action, the tasks will be retained, but without the owner.</small>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">

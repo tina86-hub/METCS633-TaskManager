@@ -1,15 +1,9 @@
 package com.team4.taskmanager.controller;
 
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,8 +82,9 @@ public class RestController {
 	            return errorResponse();
 	        }
 	    }
+	
 
-	    @PutMapping("/task/update/{id}")
+	    @PostMapping("/task/update/{id}")
 	    public ResponseEntity<?> updateTask(@PathVariable Long id, @RequestBody Task updatedTask){
 	        try {
 	            Task optTask = taskService.getTaskById(id);
