@@ -12,7 +12,7 @@
       <groupId>com.team4</groupId>
 	<artifactId>taskmanager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+    <packaging>jar</packaging>
 	<name>taskmanager</name>
 	<description>METCS633-TaskManager</description>
     <properties>
