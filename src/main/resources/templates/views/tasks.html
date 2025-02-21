@@ -67,6 +67,7 @@
                 <tr>
                     <th class="text-left">Task Name</th>
                     <th>Date</th>
+                    <th class="d-none d-lg-table-cell">Days Left</th>
                     <th>Completed</th>
                     <th class="d-none d-lg-table-cell">Task Owner</th>
                     <th class="d-none d-lg-table-cell">Task Creator</th>
@@ -77,6 +78,9 @@
                 <tr th:each="t : ${tasks}" th:data-completed="${t.completed}">
                     <td class="text-left task-name" th:text="${t.name}"></td>
                     <td th:text="${#temporals.format(t.date, 'dd-MM-yyyy')}"></td>
+                    <td class="text-center d-none d-lg-table-cell" th:data-order="${t.date}">
+                        <th:block th:include="fragments/days-left-until-deadline :: daysLeft(${t})"></th:block>
+                    </td>
                     <td>
                         <a th:href="${t.completed} ? ${'/task/unmark-done/' + t.id} : ${'/task/mark-done/' + t.id}"
                            class="nav-link text-success">
